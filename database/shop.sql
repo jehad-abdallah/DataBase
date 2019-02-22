@@ -331,7 +331,69 @@ where product_price between 5000 and 15000;
 SELECT product_id, product_title, product_price from products
 where product_price between 700 and 1200 and product_cat = 2;
 
+-- Authorization
 
+insert into user_info values
+(3, 'Mando','Ahmed', 'ahmed@gmail.com', '7813253871827638', '9687524130', 'hasdghas', 'ahsgd12');
+
+update user_info
+set first_name = 'mahmoud' 
+where user_id =3;
+
+update user_info
+set email = 'mahmoud@gmail.com' 
+where user_id =3;
+
+
+update user_info
+set email = 'mahmoud@gmail.com' 
+where user_id =3;
+
+update user_info
+set mobile = '5487126545' 
+where user_id =3;
+
+update user_info
+set `password` = 'h12312k5487126545' 
+where user_id =3;
+
+delete from `user_info`
+where user_id = 3;
+
+select * from user_info;
+select * from products;
+
+insert into products values
+(28, 1, 2, 'iPhone 6s', 30000, 'iPhone 6s', 'iphone 6s.jpeg','iPhone');
+
+update products
+set product_price = 27000
+where product_id = 28;
+
+select * from products
+where product_id = 28;
+
+update products
+set product_title = 'iPhone-6s'
+where product_id = 28;
+
+delete from `products`
+where product_id = 28;
+
+
+
+START TRANSACTION;
+SET @order_id := 200;
+insert into products values
+(7, 1, 2, 'iPhone 6s', 30000, 'iPhone 6s', 'iphone 6s.jpeg','iPhone');
+
+SET @last_product_id := LAST_INSERT_ID();
+
+insert into product_x_order values
+(null, @order_id, @last_product_id);
+
+commit;
+rollback;
 
 
 	
